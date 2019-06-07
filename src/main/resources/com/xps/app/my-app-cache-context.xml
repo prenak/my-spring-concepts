@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<context:annotation-config />
+	<context:property-placeholder location="classpath:com/xps/app/config/${config.mode}/my-app-cache-params.properties"/>
+	
+	<import resource="classpath:com/xps/app/util/my-app-util-context.xml"/>
+	<import resource="classpath:com/xps/app/hazelcast/my-app-hazelcast-member-context.xml"/>
+	
+	<bean id="myAppCache" class="com.xps.app.cahce.MyAppCache" init-method="loadCacheData">
+		<property name="loadDataOnInit" value="${cache.load.data.on.init:false}" />
+		<property name="idGenerator" ref="idGenerator" />
+		<property name="hazelcastInstance" ref="myAppHazelcastNode" />
+	</bean>
+
+</beans>

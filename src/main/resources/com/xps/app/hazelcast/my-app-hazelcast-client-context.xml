@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+	
+	<bean id="myAppHazelcastClient" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+		<property name="targetClass" value="com.hazelcast.client.HazelcastClient" />
+		<property name="targetMethod" value="newHazelcastClient" />
+		<property name="arguments" ref="hazelcastClientConfig" />
+	</bean>
+	
+	<bean id="hazelcastClientConfig" class="com.hazelcast.client.config.ClientConfig">
+		<property name="groupConfig">
+			<bean id="hazelcastGroupConfig" class="com.hazelcast.config.GroupConfig">
+				<property name="name" value="${HZCAST.CLIENT.GRP.NAME}" />
+				<property name="password" value="${HZCAST.CLIENT.GRP.PASSWORD}" />
+			</bean>
+		</property>
+	</bean>
+
+</beans>

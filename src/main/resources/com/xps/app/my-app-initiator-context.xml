@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans	http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+						http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+	
+	<context:annotation-config />
+	<context:property-placeholder location="classpath:com/xps/app/config/${config.mode}/my-app-params.properties"/>
+	
+	<import resource="classpath:com/xps/app/my-app-jmx-context.xml" />
+	<import resource="classpath:com/xps/app/persistence/my-app-database-service.xml" />
+	<!-- <import resource="classpath:com/xps/app/hazelcast/my-app-hazelcast-client-context.xml"/> -->
+	<import resource="classpath:com/xps/app/job/my-app-jobs-context.xml" />
+	
+	<!-- <bean id="tester" class="com.xps.app.Tester">
+		<property name="hc" ref="myAppHazelcastClient" />
+	</bean>	 -->
+
+</beans>
