@@ -1,2 +1,2 @@
 # my-spring-concepts
-Experiment on various spring concepts
+Experiment with various spring concepts
